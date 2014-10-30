@@ -32,6 +32,7 @@ ZIMAGE_DIR="${HOME}/Android/Kernel/hells-Core-N5/arch/arm/boot"
 # Functions
 function clean_all {
 		rm -rf $REPACK_DIR/kernel/zImage
+		rm -rf $ZIMAGE_DIR/$KERNEL
 		make clean && make mrproper
 }
 
