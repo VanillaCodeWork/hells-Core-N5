@@ -28,6 +28,7 @@ KERNEL_DIR=`pwd`
 REPACK_DIR="${HOME}/Android/Kernel/hC-N5-anykernel"
 ZIP_MOVE="${HOME}/Android/Kernel/hC-releases"
 ZIMAGE_DIR="${HOME}/Android/Kernel/hells-Core-N5/arch/arm/boot"
+DB_FOLDER="${HOME}/Dropbox/Kernel-Betas/N5"
 
 # Functions
 function clean_all {
@@ -50,6 +51,11 @@ function make_zip {
 		cd $KERNEL_DIR
 }
 
+function copy_dropbox {
+		cd $ZIP_MOVE
+		cp -vr  `echo $HC_VER`.zip $DB_FOLDER
+		cd $KERNEL_DIR
+}
 
 DATE_START=$(date +"%s")
 
@@ -69,43 +75,76 @@ echo "Making hC Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
-while read -p "Do you want to clean stuffs (y/n)? " cchoice
+while read -p "Please choose your option: [1]clean-build / [2]dirty-build / [3]abort " cchoice
 do
 case "$cchoice" in
-	y|Y )
-		clean_all
+	1 )
+		echo -e "${green}"
 		echo
-		echo "All Cleaned now."
+		echo "[..........Cleaning up..........]"
+		echo
+		echo -e "${restore}"
+		clean_all
+		echo -e "${green}"
+		echo
+		echo "[....Building `echo $HC_VER`....]"
+		echo
+		echo -e "${restore}"
+		make_kernel
+		echo -e "${green}"
+		echo
+		echo "[....Make `echo $HC_VER`.zip....]"
+		echo
+		echo -e "${restore}"
+		make_zip
 		break
 		;;
-	n|N )
+	2 )
+		echo -e "${green}"
+		echo
+		echo "[....Building `echo $HC_VER`....]"
+		echo
+		echo -e "${restore}"
+		make_kernel
+		echo -e "${green}"
+		echo
+		echo "[....Make `echo $HC_VER`.zip....]"
+		echo
+		echo -e "${restore}"
+		make_zip
+		break
+		;;
+	3 )
 		break
 		;;
 	* )
+		echo -e "${red}"
 		echo
 		echo "Invalid try again!"
 		echo
+		echo -e "${restore}"
 		;;
 esac
 done
 
 echo
 
-while read -p "Do you want to build kernel (y/n)? " dchoice
+while read -p "Do you want to copy `echo $HC_VER`.zip into dropbox folder (y/n) ? " dchoice
 do
 case "$dchoice" in
-	y|Y)
-		make_kernel
-		make_zip
+	y|Y )
+		copy_dropbox
 		break
 		;;
 	n|N )
 		break
 		;;
 	* )
+		echo -e "${red}"
 		echo
 		echo "Invalid try again!"
 		echo
+		echo -e "${restore}"
 		;;
 esac
 done
