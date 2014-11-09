@@ -34,6 +34,10 @@ DB_FOLDER="${HOME}/Dropbox/Kernel-Betas/N5"
 function clean_all {
 		rm -rf $REPACK_DIR/kernel/zImage
 		rm -rf $ZIMAGE_DIR/$KERNEL
+		rm -rf $RAMFS.gz
+		rm -rf $KERNEL_DIR/dt.img
+		rm -rf $KERNEL_DIR/boot.img
+		rm -rf $KERNEL_DIR/arch/arm/boot/ramdisk.gz
 		make clean && make mrproper
 }
 
