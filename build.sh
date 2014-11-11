@@ -15,7 +15,7 @@ DEFCONFIG="hells_defconfig"
 
 # Kernel Details
 BASE_HC_VER="hC"
-VER="-N5T-MIUI-b8.3"
+VER="-N5T-MIUI-b8.6"
 HC_VER="$BASE_HC_VER$VER"
 
 # Vars
