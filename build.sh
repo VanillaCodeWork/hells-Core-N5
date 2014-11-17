@@ -97,6 +97,12 @@ case "$cchoice" in
 		echo
 		echo -e "${restore}"
 		make_zip
+		echo -e "${green}"
+		echo
+		echo "[.....Moving `echo $HC_VER`.....]"
+		echo
+		echo -e "${restore}"
+		copy_dropbox
 		break
 		;;
 	2 )
@@ -112,31 +118,15 @@ case "$cchoice" in
 		echo
 		echo -e "${restore}"
 		make_zip
-		break
-		;;
-	3 )
-		break
-		;;
-	* )
-		echo -e "${red}"
+		echo -e "${green}"
 		echo
-		echo "Invalid try again!"
+		echo "[.....Moving `echo $HC_VER`.....]"
 		echo
 		echo -e "${restore}"
-		;;
-esac
-done
-
-echo
-
-while read -p "Do you want to copy `echo $HC_VER`.zip into dropbox folder (y/n) ? " dchoice
-do
-case "$dchoice" in
-	y|Y )
 		copy_dropbox
 		break
 		;;
-	n|N )
+	3 )
 		break
 		;;
 	* )
