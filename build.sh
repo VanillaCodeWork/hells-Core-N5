@@ -15,7 +15,7 @@ DEFCONFIG="hells_defconfig"
 
 # Kernel Details
 BASE_HC_VER="hC"
-VER="-MIUI-b9.6"
+VER="-MIUI-b9.6-v2"
 HC_VER="$BASE_HC_VER$VER"
 
 # Vars
